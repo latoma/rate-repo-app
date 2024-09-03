@@ -1,4 +1,4 @@
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet, ScrollView, SafeAreaView } from 'react-native';
 import Constants from 'expo-constants';
 import theme from '../theme';
 import AppBarTab from './AppBarTab';
@@ -9,16 +9,21 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.appBarBg,
     height: 100,
     display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-around',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 10,
   },
 });
 
 const AppBar = () => {
   return (
-    <View style={styles.container}>
-      <AppBarTab text="Repositories" />
-    </View>
+    <SafeAreaView style={{backgroundColor: theme.colors.appBarBg}}>
+      <ScrollView horizontal contentContainerStyle={styles.container}>
+          <AppBarTab text="Repositories" to="/" />
+          <AppBarTab text="Sign in" to="/signin" />
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
