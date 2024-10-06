@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView, SafeAreaView } from 'react-native';
+import { StyleSheet, ScrollView, SafeAreaView, Text } from 'react-native';
 import Constants from 'expo-constants';
 import theme from '../theme';
 import AppBarTab from './AppBarTab';
@@ -18,8 +18,12 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
-  const data = useMe();
-  console.log('Signed in user:',data?.username);
+  const { data, loading, error } = useMe();
+
+  if (loading) return null;
+  if (error) return <Text>Error loading user data</Text>;
+
+  console.log('Signed in user:', data?.username);
 
   return (
     <SafeAreaView style={{backgroundColor: theme.colors.appBarBg}}>

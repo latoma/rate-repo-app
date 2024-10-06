@@ -20,7 +20,7 @@ export const GET_REPOSITORIES = gql`
   }
 `;
 
-export const ME = gql`
+export const GET_ME = gql`
   query {
     me {
       id
