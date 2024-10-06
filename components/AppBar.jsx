@@ -2,6 +2,7 @@ import { StyleSheet, ScrollView, SafeAreaView } from 'react-native';
 import Constants from 'expo-constants';
 import theme from '../theme';
 import AppBarTab from './AppBarTab';
+import useMe from '../hooks/useMe';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,11 +18,18 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
+  const data = useMe();
+  console.log('Signed in user:',data?.username);
+
   return (
     <SafeAreaView style={{backgroundColor: theme.colors.appBarBg}}>
       <ScrollView horizontal contentContainerStyle={styles.container}>
           <AppBarTab text="Repositories" to="/" />
-          <AppBarTab text="Sign in" to="/signin" />
+          {data?.username ? (
+            <AppBarTab text="Sign out" to="/signout" />
+          ) : (
+            <AppBarTab text="Sign in" to="/signin" />
+          )}
       </ScrollView>
     </SafeAreaView>
   );
