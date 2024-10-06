@@ -1,5 +1,6 @@
-{
-  "expo": {
+import 'dotenv/config';
+
+export default {
     "name": "rate-repository-app",
     "slug": "rate-repository-app",
     "version": "1.0.0",
@@ -21,10 +22,14 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.latoma.raterepositoryapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    extra: {
+      env: process.env.ENV,
+      apolloUri: process.env.APOLLO_URI,
     }
   }
-}
